@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  search-server:
+    build: .
+    image: search-app
+    ports:
+        - 3001:3001
+    environment:
+        - PORT=3001
+        - POSTGRES_DB=search-app
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - DB_HOST=search-db
+    depends_on:
+        - search-db
+  search-db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=search-app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
