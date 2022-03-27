@@ -4,5 +4,5 @@ content-type: application/json
 {
     "name": "kisu",
     "breedGroup": "testGroup",
-    "weight": 2
+    "weight": 0.001
 }

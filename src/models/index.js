@@ -5,6 +5,6 @@ BreedGroup.hasMany(Cat);
 Cat.belongsTo(BreedGroup);
 
 module.exports = {
-	Cat,
-	BreedGroup,
+    Cat,
+    BreedGroup,
 };
