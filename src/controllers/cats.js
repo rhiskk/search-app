@@ -9,22 +9,39 @@ const catAttributes = [
     [literal("breed_group.name"), "breedGroup"]
 ];
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
     const where = {};
     if (req.query.name) {
         where.name = {
             [Op.substring]: req.query.name
         };
     }
-    const cats = await Cat.findAll({
-        include: {
-            model: BreedGroup,
-            attributes: []
-        },
-        attributes: catAttributes,
-        where
-    });
-    res.json(cats);
+    const pagination = {};
+    if (req.query.limit) {
+        pagination.limit = req.query.limit;
+        if (req.query.page) {
+            pagination.offset = req.query.page * req.query.limit;
+        }
+    }
+    const order = [];
+    if (req.query.order && req.query.by) {
+        order[0] = [req.query.by, req.query.order];
+    }
+    try {
+        const cats = await Cat.findAll({
+            include: {
+                model: BreedGroup,
+                attributes: []
+            },
+            attributes: catAttributes,
+            where,
+            ...pagination,
+            order
+        });
+        res.json(cats);
+    } catch (err) {
+        next(err);
+    }
 });
 
 router.get("/:id", async (req, res) => {
