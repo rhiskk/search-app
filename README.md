@@ -23,7 +23,7 @@ PORT=3001
 4. Run `npm install` to install dependencies
 5. Run `npm start` to start the application
 
-### Example requests
+### Requests
 
 #### Get
 `/api/cats` lists all cats
