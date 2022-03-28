@@ -65,8 +65,8 @@ Creates a cat with:
 ```javascript
 {
   "id": 1, //id auto increments so this depends on the amount of cats in the database 
-  "name": "testCat",
-  "weight": 0.01,
+  "name": "testCat", //String
+  "weight": 0.01, //Float
   "breedGroupId": 1 //id of the found or created breed group
   "updatedAt": DATE, //current time
   "createdAt": DATE //current time
