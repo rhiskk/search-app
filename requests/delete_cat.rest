@@ -1,1 +1,1 @@
-DELETE http://localhost:3001/api/cats/5
+DELETE http://localhost:3001/api/cats/1

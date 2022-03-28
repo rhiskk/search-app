@@ -13,7 +13,8 @@ services:
         - POSTGRES_PASSWORD=postgres
         - DB_HOST=search-db
     depends_on:
-        - search-db
+        search-db:
+          condition: service_healthy
   search-db:
     image: postgres
     environment:
@@ -24,3 +25,7 @@ services:
       - ./pgdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    healthcheck:
+      test: "pg_isready --username=postgres && psql --username=postgres --list"
+      timeout: 10s
+      retries: 20

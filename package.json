@@ -7,8 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "migration:down": "node src/util/rollback.js",
-    "lint": "eslint src/",
-    "test": "NODE_ENV=test jest --verbose --runInBand"
+    "lint": "eslint src/"
   },
   "author": "Hiski Ruuska",
   "license": "ISC",
