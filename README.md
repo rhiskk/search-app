@@ -26,20 +26,29 @@ PORT=3001
 ### Example requests
 
 #### Get
-/api/cats lists all cats
+`/api/cats` lists all cats
 
-/api/cats?name=cat lists all cats with `cat` in their name
+`/api/cats?name=cat` lists all cats with `cat` in their name
 
-/api/cats?order=DESC&by=name lists all the cats sorted by name in the descending order.
+`/api/cats?order=DESC&by=name` lists all the cats sorted by name in the descending order.
 Accepted `order` query parameters are DESC and ASC. Accepted `by` query parameters are id, name, weight, breedGroupId, createdAt and updatedAt.
 
-/api/cats?page=10&limit=5 returns 5 cats from page 10
+`/api/cats?page=10&limit=5` returns 5 cats from page 10
 
 You can mix and match these query parameters as you like.
 
+Returned cats have attributes: 
+```javascript
+{
+    id: 1, //Integer
+    name: "testCat", //String
+    weight: 0.01, //Float
+    breedGroup: "testGroup" //String: Name of the breed group 
+}
+```
 #### Post
 
-```
+```javascript
 POST http://localhost:3001/api/cats HTTP/1.1
 content-type: application/json
 
@@ -53,17 +62,20 @@ content-type: application/json
 Searches for a breed group with the name `testGroup` and if not found creates one.
 Creates a cat with:
 
-```
+```javascript
 {
   "id": 1, //id auto increments so this depends on the amount of cats in the database 
   "name": "testCat",
   "weight": 0.01,
-  "breedGroupId": id of the found or created breed group
-  "updatedAt": current time,
-  "createdAt": current time
+  "breedGroupId": 1 //id of the found or created breed group
+  "updatedAt": DATE, //current time
+  "createdAt": DATE //current time
 }
 ```
 
 #### Delete
 
-/api/cats/1 deletes a cat with id: 1
+`/api/cats/1` delete a cat with id: 1
+
+
+
